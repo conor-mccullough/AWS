@@ -9,7 +9,6 @@ ec2_con_cli=aws_mag_con.client(service_name="ec2",region_name='us-east-1')
 response=ec2_con_cli.describe_instances()['Reservations']
 
 # Print out each instance with some status info to avoid having to manually open up the AWS console
-
 for each_item in response:
     print("Printing instances...")
     for each in each_item['Instances']:
