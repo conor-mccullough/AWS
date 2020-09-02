@@ -1,11 +1,14 @@
 import boto3
 import sys
-from pprint import pprint
 import time
+
+# "Global" variables, used to log in to AWS, use the EC2 service in US-east-1, and fetch the instance data before passing any commands to AWS
 aws_mag_con=boto3.session.Session(profile_name='terraform')
 ec2_con_re=aws_mag_con.resource(service_name="ec2",region_name='us-east-1')
 ec2_con_cli=aws_mag_con.client(service_name="ec2",region_name='us-east-1')
 response=ec2_con_cli.describe_instances()['Reservations']
+
+# Print out each instance with some status info to avoid having to manually open up the AWS console
 
 for each_item in response:
     print("Printing instances...")
@@ -13,6 +16,7 @@ for each_item in response:
         print("==================================")
         print('Instance ID: {}\nInstance monitoring: {}\nInstance state: {}'.format(each['InstanceId'],each['Monitoring'],each['State']))
 
+# While loop cycles through the options until the user selects 4, invoking sys.exit()
 while True:
 
     print("This script performs the following actions on an EC2 instance:")
