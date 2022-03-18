@@ -1,2 +1,2 @@
 # AWS
-Various boto3 scripts
+Various boto3 scripts for reuse.
